@@ -1,5 +1,4 @@
 import time
-# from datetime import datetime
 from PyQt5.QtCore import QThread
 
 
@@ -21,5 +20,3 @@ class Recorder(QThread):
                                               .get_active_window())
             self._main_ctrl.operate_git()
             time.sleep(4 - time.time() % 4)
-            # print(self._model.get_record_dir())
-            # print(datetime.now().strftime('%H:%M:%S'))
