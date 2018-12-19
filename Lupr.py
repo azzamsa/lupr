@@ -21,6 +21,7 @@ if __name__ == "__main__":
     app = App(sys.argv)
     app.setQuitOnLastWindowClosed(False)
 
+    # Splash Screen
     splash_pix = QPixmap('../Lupr/Resources/img/lup-splash.svg')
     splash = QSplashScreen(splash_pix, Qt.WindowStaysOnTopHint)
 

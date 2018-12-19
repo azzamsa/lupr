@@ -28,15 +28,15 @@ class MainView(QMainWindow):
         record_action.triggered.connect(self.record)
         quit_action.triggered.connect(self.quit_app)
 
-        self.recorderThread = Recorder(model)
+        self.recorderThread = Recorder(model, main_controller)
 
-    def choose_dir_path(self):
-        dir_path = str(QFileDialog
-                        .getExistingDirectory(self, "Select Directory"))
-        self._main_controller.set_dir_path(dir_path)
+    def choose_record_dir(self):
+        record_dir = str(QFileDialog.getExistingDirectory(self,
+                                                          "Select Directory"))
+        self._main_controller.set_record_dir(record_dir)
 
     def record(self):
-        self.choose_dir_path()
+        self.choose_record_dir()
         self.recorderThread.start()
         self.tray.showMessage("Lup", "Lup is recording",
                               self.tray.Information, 1500)
