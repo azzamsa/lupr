@@ -11,15 +11,13 @@ from PyQt5.QtCore import QObject, pyqtSignal
 
 class MainController(QObject):
 
-    FINISHED = pyqtSignal()
-
     def __init__(self, model):
         super().__init__()
 
         self._model = model
 
-    def change_record_dir(self, dir_path):
-        self._model.set_record_dir(dir_path)
+    def set_dir_path(self, dir_path):
+        self._model.set_dir_path(dir_path)
 
     def get_active_window_title(self):
         window_id_proc = Popen(['xprop', '-root', '_NET_ACTIVE_WINDOW'],
