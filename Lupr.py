@@ -9,7 +9,7 @@ from Controllers.main_controller import MainController
 from Views.main_view import MainView
 
 
-class App(QApplication):
+class Lupr(QApplication):
     def __init__(self, sys_argv):
         super().__init__(sys_argv)
         self.model = Model()
@@ -18,8 +18,8 @@ class App(QApplication):
 
 
 if __name__ == "__main__":
-    app = App(sys.argv)
-    app.setQuitOnLastWindowClosed(False)
+    lupr = Lupr(sys.argv)
+    lupr.setQuitOnLastWindowClosed(False)
 
     # Splash Screen
     splash_pix = QPixmap('../Lupr/Resources/img/lup-splash.svg')
@@ -35,9 +35,9 @@ if __name__ == "__main__":
         progressBar.setValue(i)
         t = time.time()
         while time.time() < t + 0.1:
-            app.processEvents()
+            lupr.processEvents()
 
     time.sleep(1)
     splash.close()
 
-    sys.exit(app.exec_())
+    sys.exit(lupr.exec_())
