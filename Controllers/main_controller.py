@@ -73,8 +73,8 @@ class MainController(QObject):
                      '/.watchers').mkdir(parents=True, exist_ok=True)
 
     def get_auth_info(self):
-        result = ""
-        result += getpass.getuser() + "\n"
-        result += socket.gethostname() + "\n"
-        result += self.get_ip() + "\n"
-        return result
+        auth_info = ""
+        auth_info += getpass.getuser() + "\n"
+        auth_info += socket.gethostname() + "\n"
+        auth_info += self.get_ip() + "\n"
+        return auth_info
