@@ -30,18 +30,30 @@ class MainView(QMainWindow):
 
         self.recorderThread = Recorder(model, controller)
 
-    def choose_record_dir(self):
-        record_dir = str(QFileDialog.getExistingDirectory(self,
-                                                          "Select Directory"))
-        self._controller.set_record_dir(record_dir)
+    def save_record_path(self, record_path):
+        "Save record path."
+        self._controller.save_record_path(record_path)
+
+    def choosedir_dialog(self, caption):
+        """Prompts dialog to choose record directory."""
+        options = (QFileDialog.ShowDirsOnly |
+                   QFileDialog.DontResolveSymlinks)
+        return QFileDialog.getExistingDirectory(self, caption=caption,
+                                                options=options)
 
     def record(self):
-        self.choose_record_dir()
+        """Start recording with worker(recorder) thread."""
+        path = self.choosedir_dialog('Select Directory...')
+        if not path:
+            return None
+
+        self.save_record_path(path)
         self.recorderThread.start()
         self.tray.showMessage("Lup", "Lup is recording",
                               self.tray.Information, 1500)
 
     def quit_app(self):
+        """Quit the app."""
         self.recorderThread.terminate()
         self.tray.showMessage("Lup", "See you")
         sys.exit()
