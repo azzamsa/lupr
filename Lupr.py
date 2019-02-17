@@ -1,8 +1,5 @@
 import sys
-import time
-from PyQt5.QtWidgets import QApplication, QProgressBar, QSplashScreen
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication
 
 from Model.model import Model
 from Controllers.main_controller import MainController
@@ -20,24 +17,5 @@ class Lupr(QApplication):
 if __name__ == "__main__":
     lupr = Lupr(sys.argv)
     lupr.setQuitOnLastWindowClosed(False)
-
-    # Splash Screen
-    splash_pix = QPixmap('../Lupr/Resources/img/lup-splash.svg')
-    splash = QSplashScreen(splash_pix, Qt.WindowStaysOnTopHint)
-
-    progressBar = QProgressBar(splash)
-    progressBar.setGeometry(0, 260, 700, 25)
-
-    splash.setMask(splash_pix.mask())
-    splash.show()
-
-    for i in range(0, 100, 10):
-        progressBar.setValue(i)
-        t = time.time()
-        while time.time() < t + 0.1:
-            lupr.processEvents()
-
-    time.sleep(1)
-    splash.close()
 
     sys.exit(lupr.exec_())
