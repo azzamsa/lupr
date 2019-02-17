@@ -6,11 +6,11 @@ from Controllers.recorder import Recorder
 
 class MainView(QMainWindow):
 
-    def __init__(self, model, main_controller):
+    def __init__(self, model, controller):
         super().__init__()
 
         self._model = model
-        self._main_controller = main_controller
+        self._controller = controller
 
         # UI
         icon = QIcon("../Lupr/Resources/img/lup.svg")
@@ -28,12 +28,12 @@ class MainView(QMainWindow):
         record_action.triggered.connect(self.record)
         quit_action.triggered.connect(self.quit_app)
 
-        self.recorderThread = Recorder(model, main_controller)
+        self.recorderThread = Recorder(model, controller)
 
     def choose_record_dir(self):
         record_dir = str(QFileDialog.getExistingDirectory(self,
                                                           "Select Directory"))
-        self._main_controller.set_record_dir(record_dir)
+        self._controller.set_record_dir(record_dir)
 
     def record(self):
         self.choose_record_dir()

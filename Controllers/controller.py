@@ -8,7 +8,7 @@ from subprocess import Popen, PIPE
 from PyQt5.QtCore import QObject
 
 
-class MainController(QObject):
+class Controller(QObject):
 
     def __init__(self, model):
         super().__init__()

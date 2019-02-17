@@ -4,10 +4,10 @@ from PyQt5.QtCore import QThread
 
 class Recorder(QThread):
 
-    def __init__(self, model, main_controller):
+    def __init__(self, model, controller):
         QThread.__init__(self)
         self._model = model
-        self._main_ctrl = main_controller
+        self._main_ctrl = controller
 
     def __del__(self):
         self.wait()
