@@ -5,7 +5,6 @@ from Controllers.recorder import Recorder
 
 
 class MainView(QMainWindow):
-
     def __init__(self, model, controller):
         super().__init__()
 
@@ -22,8 +21,8 @@ class MainView(QMainWindow):
         self.tray.setContextMenu(menu)
         self.tray.show()
         self.tray.setToolTip("Lup")
-        self.tray.showMessage("Lup", "Welcome to Lup",
-                              self.tray.Information, 1500)
+        self.tray.showMessage("Lup", "Welcome to Lup", self.tray.Information,
+                              1500)
 
         record_action.triggered.connect(self.record)
         quit_action.triggered.connect(self.quit_app)
@@ -36,10 +35,9 @@ class MainView(QMainWindow):
 
     def choosedir_dialog(self, caption):
         """Prompts dialog to choose record directory."""
-        options = (QFileDialog.ShowDirsOnly |
-                   QFileDialog.DontResolveSymlinks)
-        return QFileDialog.getExistingDirectory(self, caption=caption,
-                                                options=options)
+        options = (QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
+        return QFileDialog.getExistingDirectory(
+            self, caption=caption, options=options)
 
     def record(self):
         """Start recording with worker(recorder) thread."""
@@ -49,8 +47,8 @@ class MainView(QMainWindow):
 
         self.save_record_path(path)
         self.recorderThread.start()
-        self.tray.showMessage("Lup", "Lup is recording",
-                              self.tray.Information, 1500)
+        self.tray.showMessage("Lup", "Lup is recording", self.tray.Information,
+                              1500)
 
     def quit_app(self):
         """Quit the app."""

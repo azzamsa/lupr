@@ -10,7 +10,6 @@ from PyQt5.QtCore import QObject
 
 
 class Controller(QObject):
-
     def __init__(self, model):
         super().__init__()
 
@@ -34,9 +33,8 @@ class Controller(QObject):
         for line in window_id.splitlines():
             window_id = line.split()[-1].decode()
             if window_id:
-                window_name_proc = Popen(['xprop', '-id',
-                                          window_id,
-                                          'WM_NAME'], stdout=PIPE)
+                window_name_proc = Popen(
+                    ['xprop', '-id', window_id, 'WM_NAME'], stdout=PIPE)
                 window_name, err = window_name_proc.communicate()
                 focused_window = re.findall(r'\"(.+?)\"',
                                             window_name.decode())[0]
@@ -97,8 +95,8 @@ class Controller(QObject):
 
     def create_watchers_dir(self):
         """Create watchers directory."""
-        pathlib.Path(self._model.get_record_path() +
-                     '/.watchers').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(self._model.get_record_path() + '/.watchers').mkdir(
+            parents=True, exist_ok=True)
 
     def get_auth_info(self):
         """Get auth information."""

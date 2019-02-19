@@ -32,7 +32,7 @@ class Model(QObject):
 
     def write_focused_window(self, active_window):
         """Write focused window title to file."""
-        focused_window_file = open(self.get_watcher_path() +
-                                   "/focused_window", "w+")
+        focused_window_file = open(self.get_watcher_path() + "/focused_window",
+                                   "w+")
         focused_window_file.write(active_window)
         focused_window_file.close()
