@@ -12,7 +12,7 @@ class MainView(QMainWindow):
         self._controller = controller
 
         # UI
-        icon = QIcon("../Lupr/Resources/img/lup.svg")
+        icon = QIcon("../lupr/Resources/img/lup.svg")
         menu = QMenu()
         record_action = menu.addAction("Start Recording")
         quit_action = menu.addAction("Stop and Quit")
