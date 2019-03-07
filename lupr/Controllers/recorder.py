@@ -18,7 +18,6 @@ class Recorder(QThread):
         while True:
             self._model.write_auth_info(self._main_ctrl.get_auth_info())
             self._model.write_all_windows(self._main_ctrl.get_all_windows())
-            self._model.write_focused_window(
-                self._main_ctrl.get_focused_window())
+            self._model.write_focused_window(self._main_ctrl.get_focused_window())
             self._main_ctrl.add_record()
             time.sleep(4 - time.time() % 4)
