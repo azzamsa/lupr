@@ -81,7 +81,8 @@ class Model(QObject):
 
     def create_record(self):
         student_repo = self.get_student_repo()
-        if student_repo.is_dirty():
+        # commit only when changed file present
+        if "nothing to commit" not in str(student_repo.git.status()):
             student_repo.git.add(".")
             now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             student_repo.git.commit(m=now)
