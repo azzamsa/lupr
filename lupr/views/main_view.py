@@ -1,8 +1,15 @@
 import sys
 
-from PyQt5.QtWidgets import QMenu, QSystemTrayIcon, QMainWindow, QFileDialog
+from PyQt5.QtWidgets import (
+    QMenu,
+    QSystemTrayIcon,
+    QMainWindow,
+    QFileDialog,
+    QMessageBox,
+)
 from PyQt5.QtGui import QIcon
 
+from resources import resources
 from worker.record_worker import RecordWorker
 from views.interval_prompt_view import IntervalPrompt
 
@@ -15,7 +22,7 @@ class MainView(QMainWindow):
         self._controller = controller
 
         # UI
-        icon = QIcon("../lupr/Resources/img/lup.svg")
+        icon = QIcon(":img/lup.svg")
         menu = QMenu()
         self.record_action = menu.addAction("Start Recording")
         self.set_interval_action = menu.addAction("Set Interval")
@@ -55,6 +62,7 @@ class MainView(QMainWindow):
         self.tray.showMessage("Lup", "Lup is recording", self.tray.Information, 1500)
 
     def set_interval(self):
+        "Change record interval."
         interval_prompt = IntervalPrompt()
         accepted = interval_prompt.exec_()
 
@@ -68,10 +76,11 @@ class MainView(QMainWindow):
                     self.tray.Information,
                     1500,
                 )
-            # FIXME crash get_focused_window
-            # else:
-            #     QMessageBox.warning(self, "", "Interval must higher than 0")
-            #     self.set_interval()
+            else:
+                title = "Interval Warning"
+                msg = "Interval must higher than 0"
+                QMessageBox.warning(self, title, msg)
+                self.set_interval()
 
     def quit_app(self):
         """Quit the app."""
