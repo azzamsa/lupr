@@ -1,7 +1,10 @@
 import sys
+
 from PyQt5.QtWidgets import QMenu, QSystemTrayIcon, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
-from Controllers.recorder import Recorder
+
+from worker.record_worker import RecordWorker
+from Views.interval_prompt_view import IntervalPrompt
 
 
 class MainView(QMainWindow):
@@ -14,8 +17,9 @@ class MainView(QMainWindow):
         # UI
         icon = QIcon("../lupr/Resources/img/lup.svg")
         menu = QMenu()
-        record_action = menu.addAction("Start Recording")
-        quit_action = menu.addAction("Stop and Quit")
+        self.record_action = menu.addAction("Start Recording")
+        self.set_interval_action = menu.addAction("Set Interval")
+        self.quit_action = menu.addAction("Stop and Quit")
         self.tray = QSystemTrayIcon(self)
         self.tray.setIcon(icon)
         self.tray.setContextMenu(menu)
@@ -23,14 +27,14 @@ class MainView(QMainWindow):
         self.tray.setToolTip("Lup")
         self.tray.showMessage("Lup", "Welcome to Lup", self.tray.Information, 1500)
 
-        record_action.triggered.connect(self.record)
-        quit_action.triggered.connect(self.quit_app)
+        self.record_action.triggered.connect(self.record)
+        self.set_interval_action.triggered.connect(self.set_interval)
+        self.quit_action.triggered.connect(self.quit_app)
 
-        self.recorderThread = Recorder(model, controller)
+        self.recorderThread = RecordWorker(self._model, self._controller)
 
-    def save_record_path(self, record_path):
-        "Save record path."
-        self._controller.save_record_path(record_path)
+        # default
+        self.set_interval_action.setEnabled(False)
 
     def choosedir_dialog(self, caption):
         """Prompts dialog to choose record directory."""
@@ -43,9 +47,31 @@ class MainView(QMainWindow):
         if not path:
             return None
 
-        self.save_record_path(path)
+        self._controller.set_record_path(path)
         self.recorderThread.start()
+
+        self.set_interval_action.setEnabled(True)
+        self.record_action.setEnabled(False)
         self.tray.showMessage("Lup", "Lup is recording", self.tray.Information, 1500)
+
+    def set_interval(self):
+        interval_prompt = IntervalPrompt()
+        accepted = interval_prompt.exec_()
+
+        if accepted:
+            interval = interval_prompt.interval_spin.value()
+            if interval:
+                self._controller.change_interval(interval)
+                self.tray.showMessage(
+                    "Lup",
+                    "Interval chaned to {}".format(interval),
+                    self.tray.Information,
+                    1500,
+                )
+            # FIXME crash get_focused_window
+            # else:
+            #     QMessageBox.warning(self, "", "Interval must higher than 0")
+            #     self.set_interval()
 
     def quit_app(self):
         """Quit the app."""

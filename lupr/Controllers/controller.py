@@ -1,10 +1,6 @@
 import getpass
 import socket
-import pathlib
-import git
-import os
 import re
-from datetime import datetime
 from subprocess import Popen, PIPE
 from PyQt5.QtCore import QObject
 
@@ -15,11 +11,16 @@ class Controller(QObject):
 
         self._model = model
 
-    def save_record_path(self, record_path):
+    def set_record_path(self, record_path):
         """Set record path and create watchers dir."""
-        self._model.set_record_path(record_path)
-        self.create_watchers_dir()
+        self._model.record_path = record_path
+        self._model.create_dotlup_dir()
 
+    # @pyqtSlot(int)
+    def change_interval(self, interval):
+        self._model.record_interval = interval
+
+    # FIXME crash when focused window has no title
     def get_focused_window(self):
         """Get current focused window title.
 
@@ -68,35 +69,6 @@ class Controller(QObject):
         for line in out.splitlines():
             windows += line.split(None, 3)[-1].decode() + "\n"
         return windows
-
-    def add_record(self):
-        """Track for file changes and add them to records.
-
-        Initialize git repo if it's not present.
-        Commit only invoked when changed file present.
-        """
-        record_path = self._model.get_record_path()
-        if os.path.isdir(record_path + ".git"):
-            repo = git.Repo(record_path)
-        else:
-            # initialize repo and set attribute
-            repo = git.Repo.init(record_path)
-            repo.config_writer().set_value("user", "name", getpass.getuser()).release()
-            repo.config_writer().set_value(
-                "user", "email", socket.gethostname()
-            ).release()
-
-        # commit only when changed file present
-        if "nothing to commit" not in str(repo.git.status()):
-            repo.git.add(".")
-            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            repo.git.commit(m=now)
-
-    def create_watchers_dir(self):
-        """Create watchers directory."""
-        pathlib.Path(self._model.get_record_path() + "/.watchers").mkdir(
-            parents=True, exist_ok=True
-        )
 
     def get_auth_info(self):
         """Get auth information."""
