@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QDialog
-from Views.inteval_prompt_ui import Ui_Dialog
+from views.inteval_prompt_ui import Ui_Dialog
 
 
 class IntervalPrompt(QDialog, Ui_Dialog):

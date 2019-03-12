@@ -1,9 +1,9 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 
-from Model.model import Model
-from Controllers.controller import Controller
-from Views.main_view import MainView
+from model.model import Model
+from controllers.controller import Controller
+from views.main_view import MainView
 
 
 class Lupr(QApplication):

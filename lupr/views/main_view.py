@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QMenu, QSystemTrayIcon, QMainWindow, QFileDialog
 from PyQt5.QtGui import QIcon
 
 from worker.record_worker import RecordWorker
-from Views.interval_prompt_view import IntervalPrompt
+from views.interval_prompt_view import IntervalPrompt
 
 
 class MainView(QMainWindow):

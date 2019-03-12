@@ -66,12 +66,10 @@ class Model(QObject):
 
     def initialize_student_repo(self):
         student_repo = git.Repo.init(self._record_path)
-        # student_repo.config_writer().set_value("user", "name", getpass.getuser()).release()
-        # student_repo.config_writer().set_value(
-        #     "user", "email", socket.gethostname()
-        # ).release()
-        student_repo.config_writer().set_value("user", "name", "cobanama").release()
-        student_repo.config_writer().set_value("user", "email", "cobaemail").release()
+        # real name and email useless cause lup already record login
+        # and machine name
+        student_repo.config_writer().set_value("user", "name", "student").release()
+        student_repo.config_writer().set_value("user", "email", "s@student").release()
         return student_repo
 
     def get_student_repo(self):
