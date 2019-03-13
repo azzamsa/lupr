@@ -79,7 +79,7 @@ class MainView(QMainWindow):
             else:
                 title = "Interval Warning"
                 msg = "Interval must higher than 0"
-                QMessageBox.warning(self, title, msg)
+                QMessageBox.warning(None, title, msg)
                 self.set_interval()
 
     def quit_app(self):
