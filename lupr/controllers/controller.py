@@ -55,14 +55,6 @@ class Controller(QObject):
             public_ip = "Not connected"
         return public_ip
 
-    def get_ip(self):
-        """Get IP Address."""
-        ip = socket.gethostbyname(socket.gethostname())
-        if ip == "127.0.1.1":
-            ip = self.get_public_ip()
-
-        return ip
-
     def get_all_windows(self):
         """Get all windows title.
 
@@ -82,7 +74,7 @@ class Controller(QObject):
         auth_info = ""
         username = getpass.getuser()
         machine = socket.gethostname()
-        ip = self.get_ip()
+        ip = self.get_public_ip()
         for data in [username, machine, ip]:
             auth_info += "{}\n".format(data)
         return auth_info
