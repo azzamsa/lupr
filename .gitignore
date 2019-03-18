@@ -6,3 +6,9 @@ __pycache__/
 # Pyqt
 *_ui.py
 resources.py
+
+# PyInstaller
+build/
+dist/
+build-output/
+*.spec
