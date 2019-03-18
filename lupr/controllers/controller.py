@@ -20,13 +20,26 @@ class Controller(QObject):
         """Change recording interval."""
         self._model.record_interval = interval
 
+    def _handle_various_xprop(self, active_window):
+        """Handle various xprop formats."""
+        active_window_str = active_window
+        if type(active_window) is bytes:
+            active_window_str = active_window.decode()
+
+        window_id = active_window_str.split()[-1]
+        # handle XFCE xprop format
+        if window_id == "0x0":
+            window_id = active_window_str.split()[-2].strip(',')
+
+        return window_id
+
     def get_focused_window_id(self):
         """Return focused windows id."""
         active_window_proc = Popen(
             ["xprop", "-root", "_NET_ACTIVE_WINDOW"], stdout=PIPE
         )
         active_window, err = active_window_proc.communicate()
-        focused_window_id = active_window.split()[-1].decode()
+        focused_window_id = self._handle_various_xprop(active_window)
         return focused_window_id
 
     def get_focused_window(self):
