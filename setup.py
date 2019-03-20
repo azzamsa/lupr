@@ -8,7 +8,7 @@ REQUIREMENTS = (HERE / "requirements.txt").read_text()
 
 setup(
     name="Lupr",
-    version="1.5.4",
+    version="1.5.41",
     description="Lup recorder",
     long_description=README,
     long_description_content_type="text/markdown",

@@ -1,5 +1,9 @@
 # Lupr - Lup Recorder
 
+[![image](https://img.shields.io/pypi/v/lupr.svg)](https://pypi.org/project/requests/)
+[![image](https://img.shields.io/pypi/l/lupr.svg)](https://pypi.org/project/requests/)
+[![image](https://img.shields.io/pypi/pyversions/lupr.svg)](https://pypi.org/project/requests/)
+
 ## Requirements
 
 - [wmctrl](https://manpages.debian.org/stretch/wmctrl/wmctrl.1.en.html)
