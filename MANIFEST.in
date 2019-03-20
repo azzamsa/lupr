@@ -1,5 +1,5 @@
-recursive-include lupr *.py *.ui
-recursive-include lupr/resources *.svg *qrc
+recursive-include Lupr *.py *.ui
+recursive-include Lupr/resources *.svg *qrc
 
 include requirements*.txt
 include README.md

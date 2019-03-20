@@ -9,9 +9,9 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QIcon
 
-from resources import resources
-from worker.record_worker import RecordWorker
-from views.interval_prompt_view import IntervalPrompt
+from Lupr.resources import images
+from Lupr.worker.record_worker import RecordWorker
+from Lupr.views.interval_prompt_view import IntervalPrompt
 
 
 class MainView(QMainWindow):
