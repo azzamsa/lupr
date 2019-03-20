@@ -29,7 +29,7 @@ class Controller(QObject):
         window_id = active_window_str.split()[-1]
         # handle XFCE xprop format
         if window_id == "0x0":
-            window_id = active_window_str.split()[-2].strip(',')
+            window_id = active_window_str.split()[-2].strip(",")
 
         return window_id
 
