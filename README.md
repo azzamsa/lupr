@@ -1,8 +1,8 @@
 # Lupr - Lup Recorder
 
-[![image](https://img.shields.io/pypi/v/lupr.svg)](https://pypi.org/project/requests/)
-[![image](https://img.shields.io/pypi/l/lupr.svg)](https://pypi.org/project/requests/)
-[![image](https://img.shields.io/pypi/pyversions/lupr.svg)](https://pypi.org/project/requests/)
+[![image](https://img.shields.io/pypi/v/lupr.svg)](https://pypi.org/project/lupv/)
+[![image](https://img.shields.io/pypi/l/lupr.svg)](https://pypi.org/project/lupv/)
+[![image](https://img.shields.io/pypi/pyversions/lupr.svg)](https://pypi.org/project/lupv/)
 
 ## Requirements
 
