@@ -12,3 +12,4 @@ build/
 dist/
 build-output/
 *.spec
+*.egg-info/

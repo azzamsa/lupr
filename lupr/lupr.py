@@ -14,8 +14,11 @@ class Lupr(QApplication):
         self.main_view = MainView(self.model, self.controller)
 
 
-if __name__ == "__main__":
+def main():
     lupr = Lupr(sys.argv)
     lupr.setQuitOnLastWindowClosed(False)
-
     sys.exit(lupr.exec_())
+
+
+if __name__ == "__main__":
+    main()
