@@ -4,10 +4,16 @@
 [![image](https://img.shields.io/pypi/l/lupr.svg)](https://pypi.org/project/lupv/)
 [![image](https://img.shields.io/pypi/pyversions/lupr.svg)](https://pypi.org/project/lupv/)
 
+A system for preventing plagiarism on student assignments with
+snapshotting and activity logging.
+
+All the goal of this project is for research purposes.
+
 ## Requirements
 
 - [wmctrl](https://manpages.debian.org/stretch/wmctrl/wmctrl.1.en.html)
 - [xprop](https://manpages.debian.org/stretch/x11-utils/xprop.1.en.html)
+- [git](https://git-scm.com/)
 
 Both of them already included in most GNU/Linux distribution. And see [requirements.txt](requirements.txt)
 
