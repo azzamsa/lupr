@@ -53,11 +53,11 @@ class Model(QObject):
         all_windows_file.write(all_windows)
         all_windows_file.close()
 
-    def write_focused_window(self, active_window):
+    def write_focused_window(self, focused_window):
         """Write focused window title to file."""
         focused_window_path = join(self.get_dotlup_path(), "focused_window")
         focused_window_file = open(focused_window_path, "w+")
-        focused_window_file.write(active_window)
+        focused_window_file.write(focused_window)
         focused_window_file.close()
 
     def is_repo(self):
