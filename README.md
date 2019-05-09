@@ -1,8 +1,9 @@
 # Lupr - Lup Recorder
 
-[![image](https://img.shields.io/pypi/v/lupr.svg)](https://pypi.org/project/lupv/)
-[![image](https://img.shields.io/pypi/l/lupr.svg)](https://pypi.org/project/lupv/)
-[![image](https://img.shields.io/pypi/pyversions/lupr.svg)](https://pypi.org/project/lupv/)
+[![image](https://img.shields.io/pypi/v/lupr.svg)](https://pypi.org/project/lupr/)
+[![image](https://img.shields.io/pypi/l/lupr.svg)](https://pypi.org/project/lupr/)
+[![image](https://img.shields.io/pypi/pyversions/lupr.svg)](https://pypi.org/project/lupr/)
+[![build status](https://gitlab.com/azzamsa/lupr/badges/master/build.svg)](https://gitlab.com/azzamsa/lupr/commits/master)
 
 A system for preventing plagiarism on student assignments with
 snapshotting and activity logging.
