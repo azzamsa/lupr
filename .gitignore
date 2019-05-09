@@ -13,3 +13,9 @@ dist/
 build-output/
 *.spec
 *.egg-info/
+
+# test
+.coverage
+coverage.xml
+htmlcov/
+student_tasks/
