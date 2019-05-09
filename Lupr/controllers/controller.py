@@ -71,15 +71,20 @@ class Controller(QObject):
     def get_all_windows(self):
         """Get all windows title.
 
-        wmctrl result is 0x03800004  0 machine user - WINDOW TITLE.
-        WINDOW TITLE will be taken and returned as string.
+        :note: wmctrl result are multiple of
+        "b'0x03800004 0 machine-name - window title"
+        separated by newline.
+
+        :return: str of window titles separated by newline.
         """
         all_windows = ""
         all_windows_proc = Popen(["wmctrl", "-l"], stdout=PIPE)
         all_windows_dirty, err = all_windows_proc.communicate()
-        for line in all_windows_dirty.splitlines():
-            windows_name = line.split(None, 3)[-1].decode()
-            all_windows += "{}\n".format(windows_name)
+        if all_windows_dirty:
+            all_windows_dirty = all_windows_dirty.splitlines()
+            for line in all_windows_dirty:
+                windows_name = line.split(None, 3)[-1].decode()
+                all_windows += "{}\n".format(windows_name)
         return all_windows
 
     def get_auth_info(self):
