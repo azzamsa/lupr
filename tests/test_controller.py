@@ -54,3 +54,17 @@ class TestController:
 
         output = ctrl.get_all_windows()
         assert output == ""
+
+    def test_get_all_windows_without_for(self, ctrl, monkeypatch):
+        """Test get_all_windows with Fake Object."""
+        # langsung end
+        window_title = ""
+
+        def fake_communicate(input=None, timeout=None):
+            return window_title, "err"
+
+        Lupr.controllers.controller.Popen = FakePopen
+        Lupr.controllers.controller.Popen.communicate = fake_communicate
+
+        output = ctrl.get_all_windows()
+        assert output == ""
