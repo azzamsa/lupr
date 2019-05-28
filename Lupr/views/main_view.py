@@ -72,7 +72,7 @@ class MainView(QMainWindow):
                 self._controller.change_interval(interval)
                 self.tray.showMessage(
                     "Lup",
-                    "Interval chaned to {}".format(interval),
+                    "Interval changed to {}".format(interval),
                     self.tray.Information,
                     1500,
                 )
